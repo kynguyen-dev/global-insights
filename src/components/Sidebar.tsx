@@ -1,4 +1,4 @@
-import React from 'react';
+import { Link } from '@tanstack/react-router';
 import { 
   LayoutDashboard, 
   Cloud, 
@@ -10,16 +10,14 @@ import {
 import { cn } from '../lib/utils';
 
 const menuItems = [
-  { icon: LayoutDashboard, label: 'Dashboard', id: 'dashboard' },
-  { icon: TrendingUp, label: 'Markets', id: 'markets' },
-  { icon: Cloud, label: 'Weather', id: 'weather' },
-  { icon: FileText, label: 'News', id: 'news' },
-  { icon: BarChart3, label: 'Analysis', id: 'analysis' },
+  { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
+  { icon: TrendingUp, label: 'Markets', path: '/markets' },
+  { icon: Cloud, label: 'Weather', path: '/weather' },
+  { icon: FileText, label: 'News', path: '/news' },
+  { icon: BarChart3, label: 'Analysis', path: '/analysis' },
 ];
 
 export const Sidebar = () => {
-  const [activeTab, setActiveTab] = React.useState('dashboard');
-
   return (
     <aside className="h-screen w-64 fixed left-0 top-0 z-50 bg-slate-50 dark:bg-slate-950 flex flex-col py-6 space-y-2 shadow-sidebar font-be-vietnam text-sm font-semibold">
       <div className="px-6 mb-8">
@@ -37,24 +35,28 @@ export const Sidebar = () => {
       </div>
 
       <nav className="flex-grow px-2 space-y-1">
-        {menuItems.map((item) => {
-          const isActive = activeTab === item.id;
-          return (
-            <button
-              key={item.id}
-              onClick={() => setActiveTab(item.id)}
-              className={cn(
-                "w-full flex items-center gap-3 px-4 py-3 rounded-2xl transition-all duration-300 ease-in-out",
-                isActive 
-                  ? "bg-white dark:bg-slate-800 text-blue-700 dark:text-blue-400 shadow-clay-inset" 
-                  : "text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-slate-100/50 dark:hover:bg-slate-900/50"
-              )}
-            >
-              <item.icon className={cn("w-5 h-5", isActive ? "text-primary" : "")} />
-              <span>{item.label}</span>
-            </button>
-          );
-        })}
+        {menuItems.map((item) => (
+          <Link
+            key={item.path}
+            to={item.path}
+            activeProps={{
+              className: "bg-white dark:bg-slate-800 text-blue-700 dark:text-blue-400 shadow-clay-inset"
+            }}
+            inactiveProps={{
+              className: "text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-slate-100/50 dark:hover:bg-slate-900/50"
+            }}
+            className={cn(
+              "w-full flex items-center gap-3 px-4 py-3 rounded-2xl transition-all duration-300 ease-in-out"
+            )}
+          >
+            {({ isActive }) => (
+              <>
+                <item.icon className={cn("w-5 h-5", isActive ? "text-primary" : "")} />
+                <span>{item.label}</span>
+              </>
+            )}
+          </Link>
+        ))}
       </nav>
 
       <div className="px-4 mt-auto space-y-2">

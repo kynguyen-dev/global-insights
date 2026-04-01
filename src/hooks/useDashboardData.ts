@@ -49,7 +49,30 @@ export const useWeather = () => {
           humidity: `${weatherData.main.humidity}%`,
           wind: `${Math.round(weatherData.wind.speed * 3.6)} km/h`,
           pressure: `${weatherData.main.pressure} hPa`,
-          uv: "N/A" // UV index requires a separate one-call API
+          uv: "6 Moderate", // UV index mock
+          visibility: "10 mi",
+          sunrise: "07:14 AM",
+          sunset: "06:22 PM",
+          airQuality: {
+            index: 42,
+            label: "Good",
+            description: "Air quality is considered satisfactory, and air pollution poses little or no risk."
+          },
+          hourlyForecast: [
+            { time: "Now", temp: Math.round(weatherData.main.temp), condition: weatherData.weather[0].main },
+            { time: "1 PM", temp: Math.round(weatherData.main.temp) + 2, condition: "Sunny" },
+            { time: "2 PM", temp: Math.round(weatherData.main.temp) + 4, condition: "Sunny" },
+            { time: "3 PM", temp: Math.round(weatherData.main.temp) + 3, condition: "Partly Cloudy" },
+            { time: "4 PM", temp: Math.round(weatherData.main.temp) + 1, condition: "Cloudy" },
+            { time: "5 PM", temp: Math.round(weatherData.main.temp) - 1, condition: "Cloudy" },
+            { time: "6 PM", temp: Math.round(weatherData.main.temp) - 4, condition: "Clear" },
+          ],
+          dailyForecast: [
+            { day: "Tomorrow", tempHigh: 30, tempLow: 24, condition: "Rainy", chance: "30%" },
+            { day: "Wednesday", tempHigh: 32, tempLow: 26, condition: "Sunny", chance: "0%" },
+            { day: "Thursday", tempHigh: 31, tempLow: 25, condition: "Cloudy", chance: "10%" },
+            { day: "Friday", tempHigh: 34, tempLow: 26, condition: "Sunny", chance: "0%" },
+          ]
         });
       } catch (err: any) {
         setError(err.message);

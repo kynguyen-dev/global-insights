@@ -79,10 +79,18 @@
   .clay-card {
     @apply shadow-clay-card;
   }
+  .clay-card-tactile {
+    box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 1),
+                inset -2px -2px 4px rgba(0, 0, 0, 0.05),
+                0 10px 20px -5px rgba(0, 0, 0, 0.04);
+  }
   .clay-inset {
     @apply shadow-clay-inset;
   }
   .clay-button-primary {
     @apply shadow-clay-button active:scale-95 transition-transform;
+  }
+  .weather-gradient {
+    background: linear-gradient(135deg, #215cb6 0%, #a4c1ff 100%);
   }
 }

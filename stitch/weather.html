@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Tactile Insights | Weather Outlook</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-primary-fixed": "#002659",
+                        "primary-fixed-dim": "#8eb3ff",
+                        "primary": "#215cb6",
+                        "surface": "#f9f9fb",
+                        "on-tertiary-container": "#664237",
+                        "error-dim": "#70030f",
+                        "background": "#f9f9fb",
+                        "surface-container-high": "#e6e8ec",
+                        "on-tertiary": "#fff7f5",
+                        "error-container": "#f56965",
+                        "on-error": "#fff7f6",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#a4c1ff",
+                        "on-tertiary-fixed-variant": "#704b3f",
+                        "surface-tint": "#215cb6",
+                        "secondary": "#855500",
+                        "outline": "#777b7f",
+                        "tertiary-dim": "#6f4a3e",
+                        "surface-bright": "#f9f9fb",
+                        "on-secondary-fixed-variant": "#805100",
+                        "on-error-container": "#65000b",
+                        "on-surface": "#2f3336",
+                        "secondary-fixed-dim": "#ffcb8b",
+                        "surface-container-highest": "#e0e3e7",
+                        "primary-container": "#a4c1ff",
+                        "primary-dim": "#0950a9",
+                        "tertiary": "#7c5649",
+                        "inverse-surface": "#0c0e10",
+                        "outline-variant": "#afb2b6",
+                        "error": "#ac3434",
+                        "tertiary-fixed": "#ffccbc",
+                        "inverse-on-surface": "#9c9d9f",
+                        "secondary-fixed": "#ffddb6",
+                        "secondary-dim": "#754a00",
+                        "inverse-primary": "#6e9ffd",
+                        "on-background": "#2f3336",
+                        "surface-container-low": "#f3f3f6",
+                        "on-secondary-container": "#734900",
+                        "surface-variant": "#e0e3e7",
+                        "surface-container": "#eceef1",
+                        "on-secondary": "#fff7f3",
+                        "tertiary-fixed-dim": "#f0beae",
+                        "on-surface-variant": "#5c5f63",
+                        "on-primary-container": "#003a80",
+                        "on-secondary-fixed": "#5a3800",
+                        "tertiary-container": "#ffccbc",
+                        "on-tertiary-fixed": "#503025",
+                        "on-primary": "#f9f8ff",
+                        "on-primary-fixed-variant": "#004291",
+                        "surface-dim": "#d6dadf",
+                        "secondary-container": "#ffddb6"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .clay-card {
+            box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 1),
+                inset -2px -2px 4px rgba(0, 0, 0, 0.05),
+                0 10px 20px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        .weather-gradient {
+            background: linear-gradient(135deg, #215cb6 0%, #a4c1ff 100%);
+        }
+    </style>
+</head>
+
+<body class="bg-surface font-body text-on-surface selection:bg-primary-container">
+    <!-- SideNavBar Shell -->
+    <aside class="h-screen w-64 fixed left-0 border-r-0 bg-slate-50 flex flex-col p-6 z-50">
+        <div class="mb-10 flex items-center gap-3">
+            <span class="text-2xl font-bold text-blue-700">Tactile Insights</span>
+        </div>
+        <nav class="flex flex-col gap-2 flex-grow">
+            <!-- Dashboard -->
+            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-blue-600 hover:bg-white/50 transition-all duration-300 rounded-3xl"
+                href="#">
+                <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                <span class="font-medium">Dashboard</span>
+            </a>
+            <!-- Market Insights -->
+            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-blue-600 hover:bg-white/50 transition-all duration-300 rounded-3xl"
+                href="#">
+                <span class="material-symbols-outlined" data-icon="trending_up">trending_up</span>
+                <span class="font-medium">Market Insights</span>
+            </a>
+            <!-- Weather Outlook (Active) -->
+            <a class="flex items-center gap-3 px-4 py-3 bg-blue-100 text-blue-800 rounded-3xl font-bold shadow-sm active:scale-95 transition-transform"
+                href="#">
+                <span class="material-symbols-outlined" data-icon="cloud">cloud</span>
+                <span class="font-medium">Weather Outlook</span>
+            </a>
+            <!-- Analytics -->
+            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-blue-600 hover:bg-white/50 transition-all duration-300 rounded-3xl"
+                href="#">
+                <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+                <span class="font-medium">Analytics</span>
+            </a>
+            <!-- Settings -->
+            <a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-blue-600 hover:bg-white/50 transition-all duration-300 rounded-3xl mt-auto"
+                href="#">
+                <span class="material-symbols-outlined" data-icon="settings">settings</span>
+                <span class="font-medium">Settings</span>
+            </a>
+        </nav>
+        <div class="mt-6 p-4 bg-white/40 rounded-xl clay-card">
+            <div class="flex items-center gap-3">
+                <img alt="User Profile Avatar" class="w-10 h-10 rounded-full"
+                    data-alt="Professional headshot of a smiling man with clean background for corporate profile"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCm5eLVkc1hMXdwI5jzrH6xXz4O9-Vp8eWAabAaNU1_OexfRIP7QiQhoIwHGp1ZkeiQqRSlz8CIiAHJWjO1ZHagZg_fMYIjg3dNGUDVhwSlWc9OxFgc8tORgyP4c7OYc6JcsEraDfv9ke7Lg5SreDXImVy6znqE2-av1sKRsTR8xsLSE1dYpJvX3efJYPuy1VPq-1EJq7m6A3w6xYOQ-ln3dfnj3ZGC3m-forEhDmpLbw2pZDzQ0Ak2LfxXQf61RtvtMIWFLUsFjsQ" />
+                <div>
+                    <p class="text-xs font-bold text-on-surface">Alex Rivera</p>
+                    <p class="text-[0.6875rem] text-outline">Market Strategist</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <!-- Main Content Area -->
+    <main class="ml-64 min-h-screen">
+        <!-- TopNavBar Shell -->
+        <header class="h-20 sticky top-0 z-40 bg-white/60 backdrop-blur-xl flex items-center justify-between px-8">
+            <div class="flex items-center flex-1 max-w-xl">
+                <div
+                    class="w-full relative focus-within:ring-2 focus-within:ring-blue-500/20 transition-all rounded-full">
+                    <span
+                        class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+                    <input
+                        class="w-full pl-12 pr-4 py-3 bg-surface-container-low border-none rounded-full focus:ring-0 text-sm font-body"
+                        placeholder="Search city or region..." type="text" />
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="hover:bg-slate-100 rounded-full p-2 text-slate-500">
+                    <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+                </button>
+                <button class="hover:bg-slate-100 rounded-full p-2 text-slate-500">
+                    <span class="material-symbols-outlined" data-icon="wb_sunny">wb_sunny</span>
+                </button>
+                <button class="hover:bg-slate-100 rounded-full p-2 text-slate-500">
+                    <span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+                </button>
+            </div>
+        </header>
+        <section class="p-8 space-y-8">
+            <!-- Bento Layout Header -->
+            <div class="grid grid-cols-12 gap-8">
+                <!-- Hero Weather Card -->
+                <div
+                    class="col-span-8 weather-gradient rounded-xl p-10 text-white flex flex-col justify-between min-h-[360px] relative overflow-hidden clay-card">
+                    <div class="relative z-10 flex justify-between items-start">
+                        <div>
+                            <h1 class="text-4xl font-headline font-extrabold tracking-tight">San Francisco</h1>
+                            <p class="text-lg opacity-90 mt-1 font-medium">Monday, 24 October 2023</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="material-symbols-outlined text-7xl"
+                                style="font-variation-settings: 'FILL' 1;">partly_cloudy_day</span>
+                        </div>
+                    </div>
+                    <div class="relative z-10 flex items-end justify-between mt-auto">
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-9xl font-headline font-extrabold leading-none">68°</span>
+                            <span class="text-4xl font-headline opacity-60">F</span>
+                        </div>
+                        <div class="flex gap-8">
+                            <div class="text-center">
+                                <p class="text-xs uppercase tracking-widest opacity-60 mb-1">Wind</p>
+                                <p class="text-xl font-bold">12 mph</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-xs uppercase tracking-widest opacity-60 mb-1">Humidity</p>
+                                <p class="text-xl font-bold">45%</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-xs uppercase tracking-widest opacity-60 mb-1">Visibility</p>
+                                <p class="text-xl font-bold">10 mi</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Ambient Decoration -->
+                    <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
+                </div>
+                <!-- Air Quality & Details (Asymmetric Complement) -->
+                <div class="col-span-4 flex flex-col gap-8">
+                    <div class="bg-surface-container-highest rounded-xl p-6 clay-card flex-grow">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-headline font-bold text-lg">Air Quality</h3>
+                            <span class="material-symbols-outlined text-primary">air</span>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-medium text-on-surface-variant">AQI Index</span>
+                                <span
+                                    class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-bold">Good</span>
+                            </div>
+                            <div class="text-4xl font-headline font-extrabold text-primary">42</div>
+                            <div class="h-2 bg-white/50 rounded-full overflow-hidden">
+                                <div class="h-full bg-primary w-[42%]"></div>
+                            </div>
+                            <p class="text-xs text-on-surface-variant leading-relaxed">
+                                Air quality is considered satisfactory, and air pollution poses little or no risk.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bg-surface-container-low rounded-xl p-6 clay-card">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-secondary">wb_twilight</span>
+                            <div>
+                                <p class="text-xs text-on-surface-variant">Sunrise &amp; Sunset</p>
+                                <p class="text-sm font-bold">07:14 AM • 06:22 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 24-Hour Forecast Grid (Scrollable) -->
+            <div class="space-y-4">
+                <h2 class="font-headline font-bold text-xl px-2">24-Hour Forecast</h2>
+                <div class="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
+                    <!-- Hourly Item 1 -->
+                    <div
+                        class="min-w-[120px] bg-white rounded-xl p-6 flex flex-col items-center gap-3 clay-card border border-white/50">
+                        <p class="text-xs font-bold text-outline">Now</p>
+                        <span class="material-symbols-outlined text-primary text-3xl">cloud</span>
+                        <p class="text-xl font-headline font-bold">68°</p>
+                    </div>
+                    <!-- Hourly Item 2 -->
+                    <div
+                        class="min-w-[120px] bg-primary text-white rounded-xl p-6 flex flex-col items-center gap-3 clay-card">
+                        <p class="text-xs font-bold opacity-80">1 PM</p>
+                        <span class="material-symbols-outlined text-3xl"
+                            style="font-variation-settings: 'FILL' 1;">wb_sunny</span>
+                        <p class="text-xl font-headline font-bold">70°</p>
+                    </div>
+                    <!-- Loop for Hourly -->
+                    <div
+                        class="min-w-[120px] bg-white rounded-xl p-6 flex flex-col items-center gap-3 clay-card border border-white/50">
+                        <p class="text-xs font-bold text-outline">2 PM</p>
+                        <span class="material-symbols-outlined text-primary text-3xl">wb_sunny</span>
+                        <p class="text-xl font-headline font-bold">72°</p>
+                    </div>
+                    <div
+                        class="min-w-[120px] bg-white rounded-xl p-6 flex flex-col items-center gap-3 clay-card border border-white/50">
+                        <p class="text-xs font-bold text-outline">3 PM</p>
+                        <span class="material-symbols-outlined text-primary text-3xl">partly_cloudy_day</span>
+                        <p class="text-xl font-headline font-bold">71°</p>
+                    </div>
+                    <div
+                        class="min-w-[120px] bg-white rounded-xl p-6 flex flex-col items-center gap-3 clay-card border border-white/50">
+                        <p class="text-xs font-bold text-outline">4 PM</p>
+                        <span class="material-symbols-outlined text-primary text-3xl">cloud</span>
+                        <p class="text-xl font-headline font-bold">69°</p>
+                    </div>
+                    <div
+                        class="min-w-[120px] bg-white rounded-xl p-6 flex flex-col items-center gap-3 clay-card border border-white/50">
+                        <p class="text-xs font-bold text-outline">5 PM</p>
+                        <span class="material-symbols-outlined text-primary text-3xl">cloud</span>
+                        <p class="text-xl font-headline font-bold">67°</p>
+                    </div>
+                    <div
+                        class="min-w-[120px] bg-white rounded-xl p-6 flex flex-col items-center gap-3 clay-card border border-white/50">
+                        <p class="text-xs font-bold text-outline">6 PM</p>
+                        <span class="material-symbols-outlined text-primary text-3xl">nights_stay</span>
+                        <p class="text-xl font-headline font-bold">64°</p>
+                    </div>
+                    <div
+                        class="min-w-[120px] bg-white rounded-xl p-6 flex flex-col items-center gap-3 clay-card border border-white/50">
+                        <p class="text-xs font-bold text-outline">7 PM</p>
+                        <span class="material-symbols-outlined text-primary text-3xl">nights_stay</span>
+                        <p class="text-xl font-headline font-bold">62°</p>
+                    </div>
+                </div>
+            </div>
+            <!-- 7-Day Outlook & Secondary Stats -->
+            <div class="grid grid-cols-12 gap-8">
+                <!-- 7-Day Forecast (Vertical List) -->
+                <div class="col-span-7 bg-surface-container-low rounded-xl p-8 clay-card">
+                    <h2 class="font-headline font-bold text-xl mb-6">7-Day Outlook</h2>
+                    <div class="space-y-2">
+                        <!-- Day 1 -->
+                        <div
+                            class="flex items-center justify-between p-4 bg-white/40 rounded-2xl hover:bg-white transition-all duration-300">
+                            <span class="w-24 font-bold text-on-surface-variant">Tomorrow</span>
+                            <div class="flex items-center gap-4 flex-1 justify-center">
+                                <span class="material-symbols-outlined text-primary">rainy</span>
+                                <span class="text-sm font-medium text-outline">30% Chance</span>
+                            </div>
+                            <div class="flex gap-4 w-24 justify-end">
+                                <span class="font-bold">65°</span>
+                                <span class="text-outline">58°</span>
+                            </div>
+                        </div>
+                        <!-- Day 2 -->
+                        <div
+                            class="flex items-center justify-between p-4 bg-white/40 rounded-2xl hover:bg-white transition-all duration-300">
+                            <span class="w-24 font-bold text-on-surface-variant">Wednesday</span>
+                            <div class="flex items-center gap-4 flex-1 justify-center">
+                                <span class="material-symbols-outlined text-primary">wb_sunny</span>
+                                <span class="text-sm font-medium text-outline">0% Chance</span>
+                            </div>
+                            <div class="flex gap-4 w-24 justify-end">
+                                <span class="font-bold">72°</span>
+                                <span class="text-outline">61°</span>
+                            </div>
+                        </div>
+                        <!-- Day 3 -->
+                        <div
+                            class="flex items-center justify-between p-4 bg-white/40 rounded-2xl hover:bg-white transition-all duration-300">
+                            <span class="w-24 font-bold text-on-surface-variant">Thursday</span>
+                            <div class="flex items-center gap-4 flex-1 justify-center">
+                                <span class="material-symbols-outlined text-primary">cloud</span>
+                                <span class="text-sm font-medium text-outline">10% Chance</span>
+                            </div>
+                            <div class="flex gap-4 w-24 justify-end">
+                                <span class="font-bold">69°</span>
+                                <span class="text-outline">59°</span>
+                            </div>
+                        </div>
+                        <!-- Day 4 -->
+                        <div
+                            class="flex items-center justify-between p-4 bg-white/40 rounded-2xl hover:bg-white transition-all duration-300">
+                            <span class="w-24 font-bold text-on-surface-variant">Friday</span>
+                            <div class="flex items-center gap-4 flex-1 justify-center">
+                                <span class="material-symbols-outlined text-primary">wb_sunny</span>
+                                <span class="text-sm font-medium text-outline">0% Chance</span>
+                            </div>
+                            <div class="flex gap-4 w-24 justify-end">
+                                <span class="font-bold">75°</span>
+                                <span class="text-outline">64°</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- UV Index & Wind Distribution -->
+                <div class="col-span-5 flex flex-col gap-8">
+                    <!-- UV Index Card -->
+                    <div class="bg-white rounded-xl p-8 clay-card border border-white/50 relative overflow-hidden">
+                        <h3 class="font-headline font-bold text-lg mb-6">UV Index</h3>
+                        <div class="flex items-end gap-6">
+                            <div class="relative w-24 h-24">
+                                <svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+                                    <path
+                                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                        fill="none" stroke="#f3f3f6" stroke-width="3"></path>
+                                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831" fill="none" stroke="#855500"
+                                        stroke-dasharray="60, 100" stroke-linecap="round" stroke-width="3"></path>
+                                </svg>
+                                <div
+                                    class="absolute inset-0 flex items-center justify-center font-headline font-extrabold text-2xl text-secondary">
+                                    6</div>
+                            </div>
+                            <div>
+                                <p class="text-secondary font-bold">Moderate</p>
+                                <p class="text-xs text-outline leading-relaxed mt-1">Use sunscreen from 11 AM to 4 PM
+                                    when rays are strongest.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Rain Map Preview Card -->
+                    <div class="bg-surface-container-highest rounded-xl overflow-hidden clay-card h-full">
+                        <div class="p-6 pb-0 flex justify-between items-center">
+                            <h3 class="font-headline font-bold text-lg">Rain Map</h3>
+                            <button class="text-primary text-xs font-bold hover:underline">Full View</button>
+                        </div>
+                        <div class="mt-4 h-48 relative">
+                            <img class="w-full h-full object-cover"
+                                data-alt="Modern topographic map view of San Francisco with overlaid blue weather radar pulse patterns"
+                                data-location="San Francisco"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlqrGNFfeqo8DvIN2z3M1S2TYBxzz3b2woNHNquVSsNXOT7tM73plUGGXzUYHHMaKnBtz5RhcmjwX7KyWq5rKiryMVlaTgK6poqEMzDS-hnyD7Ds1JXWeiZnYVyk4DwcqeTWGOp9VV85ovtuwrzHx7NnJlGX67H6VbOVIThGaZQ5jrrIlJpZppm-lsZzFH1RdkknUqPkphY737M5-m6a2bs5LccVKPu0Aq6l4BQOizlHOGQEA_0yPKNp9VZ0FJSTDhxrf4IjUrMwE" />
+                            <div class="absolute inset-0 bg-primary/10 pointer-events-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- FAB Suppression Applied (Not needed for this dashboard level) -->
+</body>
+
+</html>
