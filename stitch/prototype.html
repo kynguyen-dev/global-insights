@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Market Insights - Global Dashboard</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#ffccbc",
+                        "on-tertiary": "#fff7f5",
+                        "tertiary-dim": "#6f4a3e",
+                        "surface-container": "#eceef1",
+                        "tertiary-container": "#ffccbc",
+                        "outline": "#777b7f",
+                        "on-error-container": "#65000b",
+                        "on-tertiary-fixed": "#503025",
+                        "inverse-primary": "#6e9ffd",
+                        "on-primary-fixed": "#002659",
+                        "on-secondary": "#fff7f3",
+                        "error-dim": "#70030f",
+                        "secondary-fixed": "#ffddb6",
+                        "on-secondary-fixed": "#5a3800",
+                        "surface": "#f9f9fb",
+                        "on-primary-container": "#003a80",
+                        "primary-container": "#a4c1ff",
+                        "error-container": "#f56965",
+                        "secondary-dim": "#754a00",
+                        "on-tertiary-container": "#664237",
+                        "surface-bright": "#f9f9fb",
+                        "on-primary": "#f9f8ff",
+                        "on-background": "#2f3336",
+                        "tertiary-fixed-dim": "#f0beae",
+                        "surface-variant": "#e0e3e7",
+                        "surface-dim": "#d6dadf",
+                        "outline-variant": "#afb2b6",
+                        "secondary-container": "#ffddb6",
+                        "inverse-on-surface": "#9c9d9f",
+                        "on-secondary-fixed-variant": "#805100",
+                        "on-tertiary-fixed-variant": "#704b3f",
+                        "on-primary-fixed-variant": "#004291",
+                        "surface-tint": "#215cb6",
+                        "background": "#f9f9fb",
+                        "surface-container-highest": "#e0e3e7",
+                        "surface-container-high": "#e6e8ec",
+                        "inverse-surface": "#0c0e10",
+                        "tertiary": "#7c5649",
+                        "on-error": "#fff7f6",
+                        "secondary-fixed-dim": "#ffcb8b",
+                        "primary": "#215cb6",
+                        "error": "#ac3434",
+                        "on-surface": "#2f3336",
+                        "primary-fixed": "#a4c1ff",
+                        "on-secondary-container": "#734900",
+                        "primary-dim": "#0950a9",
+                        "secondary": "#855500",
+                        "on-surface-variant": "#5c5f63",
+                        "surface-container-low": "#f3f3f6",
+                        "primary-fixed-dim": "#8eb3ff"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        .clay-card {
+            box-shadow: 20px 20px 60px #d9dbde, -20px -20px 60px #ffffff;
+        }
+
+        .clay-inset {
+            box-shadow: inset 6px 6px 12px #d1d3d6, inset -6px -6px 12px #ffffff;
+        }
+
+        .clay-button-primary {
+            box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.4), inset -2px -2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+    <!-- SideNavBar (Shared Component) -->
+    <aside
+        class="h-screen w-64 fixed left-0 top-0 z-50 bg-slate-50 dark:bg-slate-950 flex flex-col h-full py-6 space-y-2 shadow-[40px_0_40px_-10px_rgba(0,0,0,0.06)] font-manrope text-sm font-semibold">
+        <div class="px-6 mb-8">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-container flex items-center justify-center shadow-lg">
+                    <span class="material-symbols-outlined text-white" data-icon="insights">insights</span>
+                </div>
+                <div>
+                    <h1 class="font-plus-jakarta text-lg font-extrabold text-blue-900 dark:text-blue-200 leading-tight">
+                        Global Insights</h1>
+                    <p class="text-[10px] uppercase tracking-widest text-slate-400">Tactile Editorial v1</p>
+                </div>
+            </div>
+        </div>
+        <nav class="flex-grow">
+            <!-- Dashboard Active -->
+            <a class="bg-white dark:bg-slate-800 text-blue-700 dark:text-blue-400 shadow-[inset_2px_2px_4px_#ffffff,inset_-2px_-2px_4px_#e0e3e7] rounded-2xl mx-2 py-3 px-4 flex items-center gap-3 transition-all duration-300 ease-in-out"
+                href="#">
+                <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                <span>Dashboard</span>
+            </a>
+            <a class="text-slate-500 dark:text-slate-400 hover:text-blue-600 px-4 py-3 mx-2 rounded-2xl hover:bg-slate-100/50 dark:hover:bg-slate-900/50 flex items-center gap-3 transition-all duration-300 ease-in-out"
+                href="#">
+                <span class="material-symbols-outlined" data-icon="show_chart">show_chart</span>
+                <span>Markets</span>
+            </a>
+            <a class="text-slate-500 dark:text-slate-400 hover:text-blue-600 px-4 py-3 mx-2 rounded-2xl hover:bg-slate-100/50 dark:hover:bg-slate-900/50 flex items-center gap-3 transition-all duration-300 ease-in-out"
+                href="#">
+                <span class="material-symbols-outlined" data-icon="cloud">cloud</span>
+                <span>Weather</span>
+            </a>
+            <a class="text-slate-500 dark:text-slate-400 hover:text-blue-600 px-4 py-3 mx-2 rounded-2xl hover:bg-slate-100/50 dark:hover:bg-slate-900/50 flex items-center gap-3 transition-all duration-300 ease-in-out"
+                href="#">
+                <span class="material-symbols-outlined" data-icon="article">article</span>
+                <span>News</span>
+            </a>
+            <a class="text-slate-500 dark:text-slate-400 hover:text-blue-600 px-4 py-3 mx-2 rounded-2xl hover:bg-slate-100/50 dark:hover:bg-slate-900/50 flex items-center gap-3 transition-all duration-300 ease-in-out"
+                href="#">
+                <span class="material-symbols-outlined" data-icon="insights">insights</span>
+                <span>Analysis</span>
+            </a>
+        </nav>
+        <div class="px-4 mt-auto space-y-2">
+            <div class="pt-4 border-t border-slate-100/50">
+                <a class="text-slate-500 px-4 py-2 flex items-center gap-3 hover:text-primary transition-colors"
+                    href="#">
+                    <span class="material-symbols-outlined" data-icon="help">help</span>
+                    <span>Help</span>
+                </a>
+            </div>
+        </div>
+    </aside>
+    <!-- Main Content Wrapper -->
+    <main class="ml-64 min-h-screen">
+        <!-- TopNavBar (Shared Component) -->
+        <header
+            class="w-full h-16 sticky top-0 z-40 bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl flex justify-between items-center px-6 shadow-[inset_2px_2px_4px_rgba(255,255,255,0.8),inset_-2px_-2px_4px_rgba(0,0,0,0.05)] no-border-tonal-shift-bg-slate-100/50">
+            <div class="flex items-center gap-8 grow">
+                <span class="text-xl font-bold text-blue-800 dark:text-blue-300 font-plus-jakarta">Market
+                    Insights</span>
+                <div class="relative w-96">
+                    <span
+                        class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                    <input
+                        class="w-full bg-surface-container-low border-none rounded-full pl-12 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/20 clay-inset"
+                        placeholder="Search markets, weather, or news..." type="text" />
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <button
+                    class="p-2 rounded-full hover:bg-slate-100/80 transition-all text-slate-500 active:scale-95 duration-200">
+                    <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+                </button>
+                <button
+                    class="p-2 rounded-full hover:bg-slate-100/80 transition-all text-slate-500 active:scale-95 duration-200">
+                    <span class="material-symbols-outlined" data-icon="settings">settings</span>
+                </button>
+            </div>
+        </header>
+        <!-- Dashboard Canvas -->
+        <div class="p-8 max-w-7xl mx-auto space-y-8">
+            <!-- Bento Header Section -->
+            <div class="grid grid-cols-12 gap-8">
+                <!-- Section 1: Weather Widget (Asymmetric Large Card) -->
+                <section class="col-span-12 lg:col-span-7">
+                    <div
+                        class="h-full bg-gradient-to-br from-primary to-primary-dim text-white rounded-xl p-8 clay-card relative overflow-hidden">
+                        <!-- Background Glow Effect -->
+                        <div class="absolute -top-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+                        <div
+                            class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center h-full gap-8">
+                            <div class="space-y-4">
+                                <div
+                                    class="flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full w-fit">
+                                    <span class="material-symbols-outlined text-sm"
+                                        data-icon="location_on">location_on</span>
+                                    <span class="text-sm font-semibold">Ho Chi Minh City, VN</span>
+                                </div>
+                                <div class="flex items-baseline gap-2">
+                                    <h2 class="text-8xl font-headline font-extrabold tracking-tighter">32°</h2>
+                                    <span class="text-2xl font-medium opacity-80 pb-4">C</span>
+                                </div>
+                                <p class="text-xl font-medium">Partly Cloudy • High 34° Low 26°</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 w-full md:w-auto">
+                                <div
+                                    class="bg-white/10 backdrop-blur-xl p-4 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.2)]">
+                                    <span class="material-symbols-outlined text-primary-container mb-2"
+                                        data-icon="humidity_percentage">humidity_percentage</span>
+                                    <span class="text-xs uppercase opacity-70 mb-1">Humidity</span>
+                                    <span class="text-lg font-bold">74%</span>
+                                </div>
+                                <div
+                                    class="bg-white/10 backdrop-blur-xl p-4 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.2)]">
+                                    <span class="material-symbols-outlined text-primary-container mb-2"
+                                        data-icon="air">air</span>
+                                    <span class="text-xs uppercase opacity-70 mb-1">Wind</span>
+                                    <span class="text-lg font-bold">12 km/h</span>
+                                </div>
+                                <div
+                                    class="bg-white/10 backdrop-blur-xl p-4 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.2)]">
+                                    <span class="material-symbols-outlined text-primary-container mb-2"
+                                        data-icon="compress">compress</span>
+                                    <span class="text-xs uppercase opacity-70 mb-1">Pressure</span>
+                                    <span class="text-lg font-bold">1012 hPa</span>
+                                </div>
+                                <div
+                                    class="bg-white/10 backdrop-blur-xl p-4 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.2)]">
+                                    <span class="material-symbols-outlined text-primary-container mb-2"
+                                        data-icon="visibility">visibility</span>
+                                    <span class="text-xs uppercase opacity-70 mb-1">UV Index</span>
+                                    <span class="text-lg font-bold">9 High</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Section 2: Market Signals (Medium Cards) -->
+                <section class="col-span-12 lg:col-span-5 flex flex-col gap-6">
+                    <div
+                        class="flex-1 bg-surface-container-highest rounded-lg p-6 flex items-center justify-between clay-card border-l-4 border-yellow-500">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 rounded-full bg-yellow-100 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-yellow-700 text-3xl"
+                                    data-icon="payments">payments</span>
+                            </div>
+                            <div>
+                                <h3
+                                    class="text-sm font-label text-on-surface-variant font-bold uppercase tracking-wider">
+                                    Gold Price - SJC</h3>
+                                <p class="text-2xl font-headline font-extrabold text-on-surface">78.500.000đ</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xs font-bold text-error flex items-center gap-1 justify-end">
+                                <span class="material-symbols-outlined text-sm"
+                                    data-icon="trending_down">trending_down</span>
+                                0.4%
+                            </span>
+                            <span class="text-[10px] text-on-surface-variant">Last updated: 5m ago</span>
+                        </div>
+                    </div>
+                    <div
+                        class="flex-1 bg-surface-container-highest rounded-lg p-6 flex items-center justify-between clay-card border-l-4 border-primary">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-blue-700 text-3xl"
+                                    data-icon="local_gas_station">local_gas_station</span>
+                            </div>
+                            <div>
+                                <h3
+                                    class="text-sm font-label text-on-surface-variant font-bold uppercase tracking-wider">
+                                    Petrol RON 95-V</h3>
+                                <p class="text-2xl font-headline font-extrabold text-on-surface">23.910 VNĐ/lít</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xs font-bold text-emerald-600 flex items-center gap-1 justify-end">
+                                <span class="material-symbols-outlined text-sm"
+                                    data-icon="trending_up">trending_up</span>
+                                1.2%
+                            </span>
+                            <span class="text-[10px] text-on-surface-variant">Effective: Now</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- Section 3: Financial News Feed -->
+            <section class="space-y-6">
+                <div class="flex items-center justify-between px-2">
+                    <h2 class="text-2xl font-headline font-bold text-on-surface">Global Financial News</h2>
+                    <button class="text-primary font-semibold text-sm hover:underline flex items-center gap-1">
+                        View All Headlines <span class="material-symbols-outlined text-sm"
+                            data-icon="chevron_right">chevron_right</span>
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- News Card 1 -->
+                    <div
+                        class="bg-surface-container-lowest rounded-xl overflow-hidden clay-card transition-transform hover:-translate-y-2 duration-300 group">
+                        <div class="relative h-48 overflow-hidden">
+                            <img alt="Market News"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                data-alt="close-up of digital stock market candlestick charts on a screen in a dark room with blue and red neon light reflections"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBdEHtPxp9M5coAJXvfEOQoCt4yL-_jL0_1eASQwQSFvoP7QnyxUpA1b02wmG_jDFrLl8u-_Cd_49pYPhEdju2CLQ0m_Kb9VXR-zLT7660YnaTBx9qsbmggMiNcNeQXrkYCPzTUQ06_CjUr5st5BAlAFz77Zqg-YWhqSblxpQLcz6bqRBx4GX6Pvf0KsmpPpq0_l0jn7sjqMsyOvo0Ed6dGYxYFQQ0lCm6Ef1FAkknh_yFUH538-tk3FwtsiRpJkhaNWR_3YAEi5o" />
+                            <div class="absolute top-4 left-4">
+                                <span
+                                    class="bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-primary uppercase shadow-sm">Analysis</span>
+                            </div>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3
+                                class="font-headline font-bold text-lg leading-tight group-hover:text-primary transition-colors">
+                                Digital Currency Shifts Amidst Global Volatility Signals</h3>
+                            <p class="text-sm text-on-surface-variant line-clamp-2">Investors are recalibrating
+                                portfolios as central banks signal potential rate adjustments in response to emerging
+                                economic markers.</p>
+                            <div class="flex items-center justify-between pt-4">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-6 h-6 rounded-full bg-slate-200"></div>
+                                    <span class="text-xs text-on-surface-variant">M. Thompson</span>
+                                </div>
+                                <span class="text-[10px] text-outline uppercase font-bold tracking-tighter">8 MIN
+                                    READ</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- News Card 2 -->
+                    <div
+                        class="bg-surface-container-lowest rounded-xl overflow-hidden clay-card transition-transform hover:-translate-y-2 duration-300 group">
+                        <div class="relative h-48 overflow-hidden">
+                            <img alt="Economy News"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                data-alt="stack of diverse world currency notes and coins on a desk with warm atmospheric lighting focusing on a gold coin"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3B7RXyzgzUaLfwTk-LcMhfQnFu3zrho3aeerfIRnrJpXDD_udwgdjEddJ3lIB5qeSy1yavLXVK3x6tNJoZ7vP8ZilZNcqMUlWSERri594NGjpJ1OKU0ZGf3D71_Mnp5IrnQGjlknpksTMKfLaxYs-Z-APaZLC1xLTxVeP5av2wkf4V7FpszpEa7xgmMChnHxee9HI3FJvm7ErHld7DLoM9FQ10G_N6BCOfciN80QunjV4lcL9hD7kBV1CTps4oT6XNuBrY32A5Jg" />
+                            <div class="absolute top-4 left-4">
+                                <span
+                                    class="bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-secondary uppercase shadow-sm">Markets</span>
+                            </div>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3
+                                class="font-headline font-bold text-lg leading-tight group-hover:text-secondary transition-colors">
+                                Gold Reserves Hit 5-Year High in Emerging Asian Markets</h3>
+                            <p class="text-sm text-on-surface-variant line-clamp-2">SJC prices fluctuate as regional
+                                demand for physical assets grows stronger amidst currency devaluations across the
+                                continent.</p>
+                            <div class="flex items-center justify-between pt-4">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-6 h-6 rounded-full bg-slate-200"></div>
+                                    <span class="text-xs text-on-surface-variant">L. Nguyen</span>
+                                </div>
+                                <span class="text-[10px] text-outline uppercase font-bold tracking-tighter">5 MIN
+                                    READ</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- News Card 3 -->
+                    <div
+                        class="bg-surface-container-lowest rounded-xl overflow-hidden clay-card transition-transform hover:-translate-y-2 duration-300 group">
+                        <div class="relative h-48 overflow-hidden">
+                            <img alt="Energy News"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                data-alt="a large wind turbine farm at sunset with orange sky and clouds, emphasizing sustainable energy transition"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhFQ67gzdVtkFJhkXmxTO3BoabdccFzKuNuu9Z14zQBhxNoR4R-f9HXU0AX_3V9g_IZ_SzC5I4OcIByMVBbfSZDUU0EUK0AThqwd808hENIp19S-bYxRTFLhzTOeRSR7ByJ6ssZ4FyEw-aKCBN2f0xLwVoybFoeAZE0-17ubr2UY3TL_ERpQ4uzys7LFp_m04cvz9zSuC5sHmHDnYdLoKAYUXzEIuul_K910PAbDzxrPe7I5qDgxVZSs_LY1EoMavqKNlRnDJVeds" />
+                            <div class="absolute top-4 left-4">
+                                <span
+                                    class="bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-emerald-600 uppercase shadow-sm">Energy</span>
+                            </div>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3
+                                class="font-headline font-bold text-lg leading-tight group-hover:text-emerald-600 transition-colors">
+                                Fuel Price Stabilization Policies Under Review for Q4</h3>
+                            <p class="text-sm text-on-surface-variant line-clamp-2">New regulatory frameworks aim to
+                                mitigate the impact of global crude oil volatility on consumer RON 95-V pricing indices.
+                            </p>
+                            <div class="flex items-center justify-between pt-4">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-6 h-6 rounded-full bg-slate-200"></div>
+                                    <span class="text-xs text-on-surface-variant">D. Hayes</span>
+                                </div>
+                                <span class="text-[10px] text-outline uppercase font-bold tracking-tighter">12 MIN
+                                    READ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <!-- Floating Action Button - Suppression Rule Applied (suppressed for dashboard context if not critical, but here used for 'Quick Insights') -->
+    <button
+        class="fixed bottom-8 right-8 w-14 h-14 rounded-full bg-primary text-white shadow-2xl flex items-center justify-center hover:scale-110 active:scale-90 transition-all z-50">
+        <span class="material-symbols-outlined" data-icon="add_chart">add_chart</span>
+    </button>
+</body>
+
+</html>

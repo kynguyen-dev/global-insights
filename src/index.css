@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-surface-container-lowest: #ffffff;
+  --color-tertiary-fixed: #ffccbc;
+  --color-on-tertiary: #fff7f5;
+  --color-tertiary-dim: #6f4a3e;
+  --color-surface-container: #eceef1;
+  --color-tertiary-container: #ffccbc;
+  --color-outline: #777b7f;
+  --color-on-error-container: #65000b;
+  --color-on-tertiary-fixed: #503025;
+  --color-inverse-primary: #6e9ffd;
+  --color-on-primary-fixed: #002659;
+  --color-on-secondary: #fff7f3;
+  --color-error-dim: #70030f;
+  --color-secondary-fixed: #ffddb6;
+  --color-on-secondary-fixed: #5a3800;
+  --color-surface: #f9f9fb;
+  --color-on-primary-container: #003a80;
+  --color-primary-container: #a4c1ff;
+  --color-error-container: #f56965;
+  --color-secondary-dim: #754a00;
+  --color-on-tertiary-container: #664237;
+  --color-surface-bright: #f9f9fb;
+  --color-on-primary: #f9f8ff;
+  --color-on-background: #2f3336;
+  --color-tertiary-fixed-dim: #f0beae;
+  --color-surface-variant: #e0e3e7;
+  --color-surface-dim: #d6dadf;
+  --color-outline-variant: #afb2b6;
+  --color-secondary-container: #ffddb6;
+  --color-inverse-on-surface: #9c9d9f;
+  --color-on-secondary-fixed-variant: #805100;
+  --color-on-tertiary-fixed-variant: #704b3f;
+  --color-on-primary-fixed-variant: #004291;
+  --color-surface-tint: #215cb6;
+  --color-background: #f9f9fb;
+  --color-surface-container-highest: #e0e3e7;
+  --color-surface-container-high: #e6e8ec;
+  --color-inverse-surface: #0c0e10;
+  --color-tertiary: #7c5649;
+  --color-on-error: #fff7f6;
+  --color-secondary-fixed-dim: #ffcb8b;
+  --color-primary: #215cb6;
+  --color-error: #ac3434;
+  --color-on-surface: #2f3336;
+  --color-primary-fixed: #a4c1ff;
+  --color-on-secondary-container: #734900;
+  --color-primary-dim: #0950a9;
+  --color-secondary: #855500;
+  --color-on-surface-variant: #5c5f63;
+  --color-surface-container-low: #f3f3f6;
+  --color-primary-fixed-dim: #8eb3ff;
+
+  --font-plus-jakarta: "Plus Jakarta Sans", sans-serif;
+  --font-manrope: "Manrope", sans-serif;
+  --font-be-vietnam: "Be Vietnam Pro", sans-serif;
+
+  --radius-DEFAULT: 1rem;
+  --radius-lg: 2rem;
+  --radius-xl: 3rem;
+
+  --shadow-clay-card: 20px 20px 60px #d9dbde, -20px -20px 60px #ffffff;
+  --shadow-clay-inset: inset 6px 6px 12px #d1d3d6, inset -6px -6px 12px #ffffff;
+  --shadow-clay-button: inset 2px 2px 4px rgba(255, 255, 255, 0.4), inset -2px -2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-sidebar: 40px 0 40px -10px rgba(0,0,0,0.06);
+  --shadow-topbar: inset 2px 2px 4px rgba(255,255,255,0.8), inset -2px -2px 4px rgba(0,0,0,0.05);
+}
+
+@layer base {
+  body {
+    @apply bg-surface font-be-vietnam text-on-surface selection:bg-primary-container selection:text-on-primary-container;
+  }
+}
+
+@layer components {
+  .clay-card {
+    @apply shadow-clay-card;
+  }
+  .clay-inset {
+    @apply shadow-clay-inset;
+  }
+  .clay-button-primary {
+    @apply shadow-clay-button active:scale-95 transition-transform;
+  }
+}
