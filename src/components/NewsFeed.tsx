@@ -26,48 +26,48 @@ export const NewsFeed = () => {
   }
 
   return (
-    <section className="space-y-6">
-      <div className="flex items-center justify-between px-2">
-        <h2 className="text-2xl font-plus-jakarta font-bold text-on-surface">Global Financial News</h2>
-        <button className="text-primary font-semibold text-sm hover:underline flex items-center gap-1 group">
-          View All Headlines 
-          <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+    <section className="space-y-12">
+      <div className="flex items-center justify-between px-6">
+        <h2 className="text-4xl font-plus-jakarta font-black text-on-surface tracking-tighter">Market Pulse</h2>
+        <button className="text-primary font-black text-sm uppercase tracking-widest hover:underline flex items-center gap-3 group bg-surface px-8 py-3.5 rounded-full shadow-clay-button transition-all border border-white/40">
+          More Headlines 
+          <ChevronRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
         </button>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
         {news.map((item) => (
-          <div key={item.id} className="bg-white dark:bg-slate-800 rounded-[2rem] overflow-hidden clay-card transition-all hover:-translate-y-2 duration-300 group border border-white/20">
-            <div className="relative h-48 overflow-hidden">
+          <div key={item.id} className="bg-surface-container-low rounded-[4rem] overflow-hidden clay-card transition-all hover:-translate-y-4 duration-500 group border border-white/20">
+            <div className="relative h-64 overflow-hidden">
               <img 
                 alt={item.title} 
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 src={item.image} 
               />
-              <div className="absolute top-4 left-4">
-                <span className="bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold uppercase shadow-sm">
+              <div className="absolute top-8 left-8">
+                <span className="bg-surface/95 backdrop-blur-md px-5 py-2 rounded-full text-[10px] font-black uppercase shadow-neu-flat tracking-[0.2em] text-primary border border-white/30">
                   {item.category}
                 </span>
               </div>
             </div>
             
-            <div className="p-6 space-y-3">
-              <h3 className="font-plus-jakarta font-bold text-lg leading-tight group-hover:text-primary transition-colors line-clamp-2 dark:text-white">
+            <div className="p-10 space-y-6">
+              <h3 className="font-plus-jakarta font-black text-2xl leading-tight group-hover:text-primary transition-colors line-clamp-2 dark:text-white tracking-tight">
                 {item.title}
               </h3>
-              <p className="text-sm text-on-surface-variant line-clamp-3 dark:text-slate-400">
+              <p className="text-base text-on-surface-variant line-clamp-3 dark:text-slate-400 font-bold leading-relaxed opacity-80">
                 {item.description}
               </p>
               
-              <div className="flex items-center justify-between pt-4 border-t border-slate-50 dark:border-slate-700/50">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full bg-slate-200 overflow-hidden">
-                     <img src={`https://i.pravatar.cc/150?u=${item.author}`} alt={item.author} />
+              <div className="flex items-center justify-between pt-8 border-t border-white/20 dark:border-white/10">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-surface shadow-clay-button overflow-hidden border border-white/40 p-0.5">
+                     <img className="rounded-full" src={`https://i.pravatar.cc/150?u=${item.author}`} alt={item.author} />
                   </div>
-                  <span className="text-xs text-on-surface-variant dark:text-slate-400">{item.author}</span>
+                  <span className="text-xs font-black text-on-surface-variant dark:text-slate-400 tracking-wide">{item.author}</span>
                 </div>
-                <div className="flex items-center gap-1 text-[10px] text-outline uppercase font-bold tracking-tighter dark:text-slate-500">
-                  <Clock className="w-3 h-3" />
+                <div className="flex items-center gap-2 text-[10px] text-primary uppercase font-black tracking-widest bg-primary/10 px-4 py-1.5 rounded-full shadow-neu-inset">
+                  <Clock className="w-4 h-4" />
                   {item.readTime}
                 </div>
               </div>
@@ -78,3 +78,5 @@ export const NewsFeed = () => {
     </section>
   );
 };
+
+
