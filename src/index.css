@@ -99,13 +99,13 @@
 
 @layer components {
   .neu-flat {
-    @apply shadow-neu-flat rounded-[3.5rem] bg-surface;
+    @apply shadow-neu-flat rounded-[2rem] bg-surface;
   }
   .neu-inset {
-    @apply shadow-neu-inset rounded-[3.5rem] bg-surface;
+    @apply shadow-neu-inset rounded-[2rem] bg-surface;
   }
   .clay-card {
-    @apply shadow-clay-card rounded-[4rem] bg-surface-container-low border border-white/20;
+    @apply shadow-clay-card rounded-[2rem] bg-surface-container-low border border-white/20;
     box-shadow: var(--shadow-clay-card), var(--shadow-clay-inner);
   }
   .clay-button {

@@ -25,17 +25,17 @@ export const WeatherWidget = () => {
   }
 
   return (
-    <div className="h-full bg-gradient-to-br from-primary to-primary-dim text-white rounded-[4rem] p-12 clay-card relative overflow-hidden group shadow-clay-card border border-white/20 transition-all duration-300">
+    <div className="h-full bg-gradient-to-br from-primary to-primary-dim text-white rounded-[1.5rem] sm:rounded-[2rem] p-5 sm:p-8 clay-card relative overflow-hidden group shadow-clay-card border border-white/20 transition-all duration-300">
       {/* Background Glow Effect */}
       <div className="absolute -top-32 -right-32 w-80 h-80 bg-white/20 rounded-full blur-3xl group-hover:bg-white/30 transition-all duration-700"></div>
       
-      <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center h-full gap-12">
-        <div className="space-y-8 w-full md:w-auto">
-          <div className="flex flex-col gap-8">
+      <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center h-full gap-8">
+        <div className="space-y-5 w-full md:w-auto">
+          <div className="flex flex-col gap-5">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md px-8 py-3 rounded-full w-fit shadow-neu-inset border border-white/10">
+              <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md px-6 py-2.5 rounded-full w-fit shadow-neu-inset border border-white/10">
                 <MapPin className="w-6 h-6" />
-                <span className="text-lg font-extrabold tracking-tight">{data.city}</span>
+                <span className="text-base font-extrabold tracking-tight">{data.city}</span>
               </div>
               <button 
                 onClick={() => setIsSearching(!isSearching)}
@@ -78,14 +78,14 @@ export const WeatherWidget = () => {
           </div>
           
           <div className="flex items-baseline gap-2">
-            <h2 className="text-9xl font-plus-jakarta font-extrabold tracking-tighter drop-shadow-lg">{data.temp}°</h2>
-            <span className="text-3xl font-black opacity-80 pb-6">C</span>
+            <h2 className="text-6xl sm:text-8xl font-plus-jakarta font-extrabold tracking-tighter drop-shadow-lg">{data.temp}°</h2>
+            <span className="text-2xl font-black opacity-80 pb-4">C</span>
           </div>
           
-          <p className="text-2xl font-bold tracking-tight opacity-90">{data.condition}</p>
+          <p className="text-xl font-bold tracking-tight opacity-90">{data.condition}</p>
         </div>
 
-        <div className="grid grid-cols-2 gap-8 w-full md:w-auto">
+        <div className="grid grid-cols-2 gap-4 w-full md:w-auto">
           <WeatherDetail icon={Droplets} label="Humidity" value={data.humidity} />
           <WeatherDetail icon={Wind} label="Wind" value={data.wind} />
           <WeatherDetail icon={Gauge} label="Pressure" value={data.pressure} />
@@ -97,10 +97,10 @@ export const WeatherWidget = () => {
 };
 
 const WeatherDetail = ({ icon: Icon, label, value }: { icon: any, label: string, value: string }) => (
-  <div className="bg-white/10 backdrop-blur-xl p-8 rounded-[3rem] flex flex-col items-center justify-center min-w-[160px] shadow-neu-flat border border-white/10 hover:bg-white/20 transition-all duration-500 group/item">
-    <Icon className="text-white w-10 h-10 mb-4 opacity-90 transition-transform group-hover/item:scale-110" />
-    <span className="text-[10px] uppercase opacity-70 mb-1 font-black tracking-[0.2em]">{label}</span>
-    <span className="text-2xl font-black tracking-tight">{value}</span>
+  <div className="bg-white/10 backdrop-blur-xl p-3 sm:p-5 rounded-[1rem] sm:rounded-[1.5rem] flex flex-col items-center justify-center min-w-0 shadow-neu-flat border border-white/10 hover:bg-white/20 transition-all duration-500 group/item">
+    <Icon className="text-white w-6 h-6 sm:w-8 sm:h-8 mb-2 sm:mb-3 opacity-90 transition-transform group-hover/item:scale-110" />
+    <span className="text-[8px] sm:text-[9px] uppercase opacity-70 mb-1 font-black tracking-[0.2em]">{label}</span>
+    <span className="text-base sm:text-xl font-black tracking-tight">{value}</span>
   </div>
 );
 

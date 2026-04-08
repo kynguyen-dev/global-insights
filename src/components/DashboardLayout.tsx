@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Sidebar } from './Sidebar';
 import { Topbar } from './Topbar';
 
@@ -7,12 +7,14 @@ interface DashboardLayoutProps {
 }
 
 export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-surface">
-      <Sidebar />
-      <main className="ml-64 min-h-screen transition-all duration-300">
-        <Topbar />
-        <div className="p-8 max-w-7xl mx-auto">
+      <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <main className="lg:ml-64 min-h-screen transition-all duration-300">
+        <Topbar onMenuToggle={() => setSidebarOpen(true)} />
+        <div className="p-4 sm:p-6 lg:p-8">
           {children}
         </div>
       </main>
